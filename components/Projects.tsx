@@ -36,7 +36,7 @@ export default function Projects() {
           </h2>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -49,12 +49,28 @@ export default function Projects() {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group glass-card block p-8 sm:p-10 hover:border-accent/20 transition-all duration-300"
+                className="group glass-card glow-hover relative block p-8 sm:p-10 overflow-hidden"
               >
-                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-                  <div className="flex-1">
+                {/* Large background project index number */}
+                <span className="project-number-bg">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                {/* Top row: index label + live badge */}
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-mono text-xs text-gray-600 tracking-widest">
+                    PROJECT_{String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs text-emerald-400/80 border border-emerald-400/20 bg-emerald-400/[0.06] px-2.5 py-1 rounded-full">
+                    <span className="w-1 h-1 rounded-full bg-emerald-400 animate-status-pulse" />
+                    Live
+                  </span>
+                </div>
+
+                <div className="relative z-10 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-1">
-                      <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-accent transition-colors">
+                      <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-accent transition-colors duration-300">
                         {project.title}
                       </h3>
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity text-accent">
@@ -64,7 +80,7 @@ export default function Projects() {
                     <p className="font-mono text-accent/70 text-sm mb-1">
                       {project.subtitle}
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
+                    <p className="text-gray-500 text-sm mb-4 font-mono">
                       {project.role}
                     </p>
                     <p className="text-gray-400 leading-relaxed max-w-2xl">
@@ -80,21 +96,19 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  <div className="lg:w-80 shrink-0">
-                    <ul className="space-y-3">
+                  <div className="lg:w-72 shrink-0">
+                    <p className="font-mono text-xs text-gray-600 mb-3 uppercase tracking-wider">
+                      Key highlights
+                    </p>
+                    <ul className="space-y-2.5">
                       {project.highlights.map((h, i) => (
                         <li
                           key={i}
                           className="flex items-start gap-3 text-sm text-gray-400"
                         >
                           <span className="text-accent mt-1.5 shrink-0">
-                            <svg
-                              width="8"
-                              height="8"
-                              viewBox="0 0 8 8"
-                              fill="currentColor"
-                            >
-                              <rect width="8" height="8" rx="1" />
+                            <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor">
+                              <rect width="6" height="6" rx="1" />
                             </svg>
                           </span>
                           {h}

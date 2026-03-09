@@ -18,7 +18,7 @@
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
 
   ::-webkit-scrollbar-track {
@@ -26,11 +26,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-accent/30 rounded-full;
+    @apply bg-accent/40 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent/50;
+    @apply bg-accent/60;
   }
 }
 
@@ -48,27 +48,103 @@
   }
 
   .glass-card {
-    @apply bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl;
+    @apply bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl transition-all duration-300;
   }
 
   .tech-pill {
-    @apply px-3 py-1 text-xs font-mono rounded-full bg-accent/10 text-accent border border-accent/20 whitespace-nowrap;
+    @apply px-3 py-1 text-xs font-mono rounded-full bg-accent/10 text-accent border border-accent/20 whitespace-nowrap transition-colors duration-200 hover:bg-accent/20;
+  }
+
+  /* Stat card: left accent bar variant */
+  .stat-card {
+    @apply bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-5;
+    border-left: 2px solid rgba(14, 165, 233, 0.5);
   }
 }
 
-/* Grid background for hero */
+/* ─── Hero Grid ──────────────────────────────────────────────────── */
 .hero-grid {
   background-image:
-    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Gradient glow effect */
+/* ─── Mouse-tracking glow ────────────────────────────────────────── */
 .glow {
   background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(14, 165, 233, 0.06),
+    700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(14, 165, 233, 0.07),
     transparent 40%
   );
+}
+
+/* ─── Ambient orbs ───────────────────────────────────────────────── */
+.orb-accent {
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.14) 0%, transparent 70%);
+}
+
+/* ─── Project card large background index number ─────────────────── */
+.project-number-bg {
+  position: absolute;
+  font-family: var(--font-space-grotesk);
+  font-size: clamp(6rem, 16vw, 12rem);
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(14, 165, 233, 0.035);
+  pointer-events: none;
+  user-select: none;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  letter-spacing: -0.05em;
+  transition: color 0.4s ease;
+}
+
+.group:hover .project-number-bg {
+  color: rgba(14, 165, 233, 0.08);
+}
+
+/* ─── Shimmer text effect ────────────────────────────────────────── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    rgba(14, 165, 233, 0.7) 0%,
+    rgba(14, 165, 233, 1) 30%,
+    rgba(56, 189, 248, 1) 50%,
+    rgba(14, 165, 233, 1) 70%,
+    rgba(14, 165, 233, 0.7) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ─── Timeline connector gradient ────────────────────────────────── */
+.timeline-line {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(14, 165, 233, 0.15) 15%,
+    rgba(14, 165, 233, 0.15) 85%,
+    transparent
+  );
+}
+
+/* ─── Glow card hover ────────────────────────────────────────────── */
+.glow-hover {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.glow-hover:hover {
+  box-shadow: 0 8px 40px rgba(14, 165, 233, 0.08), 0 0 0 1px rgba(14, 165, 233, 0.12);
+  border-color: rgba(14, 165, 233, 0.22) !important;
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ─── Section divider ────────────────────────────────────────────── */
+.section-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
