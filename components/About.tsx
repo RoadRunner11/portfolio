@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { aboutText, personalInfo } from "@/lib/data";
 
+// warm: human/time achievement → amber-gold
+// cool: technical performance  → white (neutral on dark)
 const impactStats = [
-  { value: "8+", label: "Years engineering", sub: "backend & AI" },
-  { value: "85%", label: "Latency slashed", sub: "satellite imagery" },
-  { value: "50×", label: "Perf. multiplier", sub: "task queue" },
+  { value: "8+", label: "Years engineering", sub: "backend & AI", warm: true },
+  { value: "85%", label: "Latency slashed", sub: "satellite imagery", warm: false },
+  { value: "50×", label: "Perf. multiplier", sub: "task queue", warm: false },
 ];
 
 export default function About() {
@@ -45,9 +47,9 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-              className="border-t border-accent/30 pt-4"
+              className={`border-t pt-4 ${stat.warm ? "border-amber-400/40" : "border-accent/30"}`}
             >
-              <div className="font-display text-3xl sm:text-4xl font-bold text-white">
+              <div className={`font-display text-3xl sm:text-4xl font-bold ${stat.warm ? "text-amber-400" : "text-white"}`}>
                 {stat.value}
               </div>
               <div className="font-display text-sm font-semibold text-gray-300 mt-1 capitalize">
@@ -78,7 +80,7 @@ export default function About() {
               <span>8+ years experience</span>
             </div>
             <div className="flex items-center gap-2 text-gray-500">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-status-pulse" />
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-status-pulse" />
               <span>Open to opportunities</span>
             </div>
           </div>

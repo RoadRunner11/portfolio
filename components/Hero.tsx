@@ -26,10 +26,12 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 // ─── Stats data ─────────────────────────────────────────────────────
+// warm: true  → amber-gold (human/time achievement)
+// warm: false → electric blue (technical performance)
 const stats = [
-  { value: 8, suffix: "+", label: "Years Engineering", detail: "Backend & AI Systems" },
-  { value: 85, suffix: "%", label: "Latency Reduced", detail: "Satellite Imagery Pipeline" },
-  { value: 50, suffix: "×", label: "Perf. Boost", detail: "Task Queue Optimization" },
+  { value: 8, suffix: "+", label: "Years Engineering", detail: "Backend & AI Systems", warm: true },
+  { value: 85, suffix: "%", label: "Latency Reduced", detail: "Satellite Imagery Pipeline", warm: false },
+  { value: 50, suffix: "×", label: "Perf. Boost", detail: "Task Queue Optimization", warm: false },
 ];
 
 // ─── Icons ──────────────────────────────────────────────────────────
@@ -115,7 +117,7 @@ export default function Hero() {
               transition={{ delay: 0.1, duration: 0.5 }}
               className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-accent/20 bg-accent/[0.06] mb-7"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 animate-status-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0 animate-status-pulse" />
               <span className="font-mono text-xs text-gray-400">
                 {personalInfo.location} &mdash; Open to opportunities
               </span>
@@ -229,14 +231,16 @@ export default function Hero() {
                   duration: 0.7,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`stat-card flex-1 lg:flex-none lg:w-60 ${
-                  i === 1 ? "lg:ml-8" : ""
-                } ${
+                className={`flex-1 lg:flex-none lg:w-60 bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-5 ${
+                  stat.warm
+                    ? "border-l-2 border-l-amber-400/50"
+                    : "border-l-2 border-l-accent/50"
+                } ${i === 1 ? "lg:ml-8" : ""} ${
                   i === 0 ? "animate-float" : i === 1 ? "animate-float-mid" : "animate-float-slow"
                 }`}
                 style={{ animationDelay: `${i * 2}s` }}
               >
-                <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-accent tabular-nums">
+                <div className={`font-display text-2xl sm:text-3xl lg:text-4xl font-bold tabular-nums ${stat.warm ? "text-amber-400" : "text-accent"}`}>
                   <Counter to={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="font-display text-sm sm:text-base font-semibold text-white mt-1">
